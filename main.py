@@ -38,19 +38,20 @@ def main():
         #ImprimePenalizacion(cromos)
         #Calcular la probabilidad de ser elegidos en base a su penalizacion y si es maximo o  minimo.
         sumatoria=SumatoriaFX(cromos)
+        #print(sumatoria)
         #asignar probabilidad de ser elegido.
-        lista_con_probabilidad=Probabilidad(sumatoria,cromos)
+        lista_con_probabilidad=Probabilidad(sumatoria,cromos,variables)
         #ImprimeProbabilidad(lista_con_probabilidad)
         opciones_disponibles=Ruleta(lista_con_probabilidad)
         # print opciones_disponibles
         # raw_input("espera")
         padres,hijos=SeleccionParejas(opciones_disponibles,variables)
-        #ImprimeParejas(padres)
-        #print hijos
+
         #dict=GenerarLlaves(cromosomas_cruzados)
         dict1=GenerarLlaves(hijos)
         best666=EvaluarConElite(dict1,variables,best)
         best=best666[:]
+
         #Apartir de aqui comienza el cruzamiento.
         cromosomas_cruzados=Cruzar(hijos,variables)
         #Apartir de este punto sigue la mutacion.

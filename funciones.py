@@ -81,7 +81,7 @@ def Penalizar(cromo,variables):
                 #print "penalizo a un maximo"
             else:
                 #print "penalizo a un minimo"
-                i.append(i[3]-10000000)
+                i.append(i[3]+10000000)
         cromos.append(i)
     return cromo
 def ImprimeGeneracion(generacion):
@@ -95,12 +95,22 @@ def SumatoriaFX(lista):
     for x in lista:
         suma=suma+abs(int(x[4]))
     return suma
-def Probabilidad(sum,individuos):
-    for x in individuos:
-        resta=float(sum)-float(x[4])
-        p=(resta*100)/float(sum)
-        x.append(int(p))
+def Probabilidad(sum,individuos,variables):
+    if variables[5]=='1':
+        #print "maximizar"
+        #maximizar una funcion
+        for x in individuos:
+            resta=float(sum)-float(x[4])
+            p=(resta*100)/float(sum)
+            x.append(int(p))
+    else:
+        #print "minimizar"
+        for x in individuos:
+            #resta=float(sum)-float(x[4])
+            p=(float(x[4])/(float(sum)))*100
+            x.append(int(p))
     return individuos
+
 def Ruleta(lista):
     rul=[]
     for x in lista:

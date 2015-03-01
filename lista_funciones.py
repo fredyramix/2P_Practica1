@@ -11,15 +11,20 @@ def EvaluarConElite(dict,variables,best):
         if len(best)==0:
             best=b[:]
         else:
-            if int(b[0])>int(best[0]):
-                best=b[:]
-        #print best
+            if variables[5]=='1':
+                #maximo
+                if int(b[0])>int(best[0]):
+                    best=b[:]
+            else:
+                #minimo
+                if int(b[0])<int(best[0]):
+                    best=b[:]
     return best
 
 
 def primera(resultado,variables):
     #x^2
-    if variables[5]=='1':
+    if variables[5]=='1' or variables[5]=='0' :
         #maximizar
         r=resultado.items()
         r.sort()
@@ -38,6 +43,7 @@ def primera(resultado,variables):
             indi.append(entero)
             ind.append(indi)
         return ind
+
 
 
 
