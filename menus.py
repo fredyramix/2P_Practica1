@@ -17,23 +17,22 @@ def menu():
     print "[1].-F(x)=x^2"
     print "[2].-F(x)=sin x * 40"
     print "[3].-F(x)=(1000/abs(50-x))+x"
-    print "[4].-F(x)=x^2"
-    print "[5].-F(x)=x^2"
+    print "[4].-F(x)=(1000/abs(50-x))+x"
+    print "[5].-F(x)=((1000/abs(30-x))+(1000/abs(50-x))+(1000/abs(80-x)))+x"
     x=input("Ingresa una opcion: ")
 
 
 
     if funciones.has_key(str(x)):
-        if str(x)=='1':
-            variables=[]
-            variables.append("1")
-            variables.append(raw_input("Ingrese el numero de cromosomas: "))
-            variables.append(raw_input("Ingrese el numero de generaciones: "))
-            print "Ingrese Rango X: 0<=X<=200"
-            variables.append(raw_input("Minimo de X:"))
-            variables.append(raw_input("Maximo de X:"))
-            variables.append(raw_input("Max [1] o Min [0] :"))
-            return(variables)
+        variables=[]
+        variables.append(str(x))
+        variables.append(raw_input("Ingrese el numero de cromosomas: "))
+        variables.append(raw_input("Ingrese el numero de generaciones: "))
+        print "Ingrese Rango X: 0<=X<=200"
+        variables.append(raw_input("Minimo de X:"))
+        variables.append(raw_input("Maximo de X:"))
+        variables.append(raw_input("Max [1] o Min [0] :"))
+        return(variables)
     else:
         print "Error opción no encontrada"
         cls()

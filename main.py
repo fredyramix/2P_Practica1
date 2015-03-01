@@ -7,7 +7,7 @@ from funciones import  *
 from menus import *
 from cruzamiento import *
 import os
-
+import math
 #definición de cromosoma:
 # x = [, , , , , ]
 #combinaciones entre 1 y 0 maximo 31
@@ -30,7 +30,7 @@ def main():
 
     print "Realizando algoritmo genetico esto puede llevar algunos minutos por favor espere..."
     while x!=int(variables[2]):
-        funciones_evaluadas=Calculo_fx(resultado)
+        funciones_evaluadas=Calculo_fx(resultado,variables)
         #Siguiente paso l penalizacion a los individuos que su codificacion salgan del rango de X
         #Calcular la probabilidad de ser elegidos.
         #print(funciones_evaluadas)

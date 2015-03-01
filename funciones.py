@@ -1,6 +1,10 @@
 # -*- encoding: utf-8 -*-
 __author__ = 'fredy'
 import random
+from math import sin
+from math import cos
+
+
 
 
 def primera_generacion(variables):
@@ -44,7 +48,7 @@ def ImprimePenalizacion(cromos):
     for x in cromos:
         print ""+str(x[0]) +"\t\t"+ str(x[1]) +"\t\t\t"+ str(x[2]) +"\t\t\t\t"+ str(x[3])+"\t\t\t"+ str(x[4])
 
-def Calculo_fx(resultado):
+def Calculo_fx(resultado,variables):
     r=resultado.items()
     r.sort()
     #print "Calculo de f(x):"
@@ -57,7 +61,16 @@ def Calculo_fx(resultado):
         for y in range(0,len(x[1])):
             concat += str(x[count][y])
         entero=int(concat,2)
-        fx=entero**2
+        if variables[0]=='1':
+            fx=entero**2
+        elif variables[0]=='2':
+            fx=sin(float(entero)) * 40
+        elif variables[0]=='3':
+            fx=cos(float(entero)) + entero
+        elif variables[0]=='4':
+            fx=(1000/abs(50-entero))+entero
+        elif variables[0]=='5':
+            fx=((1000/abs(30-entero))+(1000/abs(50-entero))+(1000/abs(80-entero)))+entero
         indi.append(x[0])
         indi.append(concat)
         indi.append(entero)
