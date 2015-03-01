@@ -25,14 +25,20 @@ def primera_generacion(variables):
                 cromosoma.insert(0,0)
             individuos[str(x)]=cromosoma
     return individuos
+
+def ImprimePrimeraGeneracion(cromos):
+    print "N° \t\tCodificacion"
+    a=cromos.items()
+    for x in a:
+        print ""+str(x[0]) +"\t\t"+ str(x[1])
 def ImprimeProbabilidad(cromos):
     print "N° \t\tCodificacion \t\tEntero   \t\tF(X)\t\t\tPenalizacion\t\tProbabilidad Invertida"
     for x in cromos:
         print ""+str(x[0]) +"\t\t"+ str(x[1]) +"\t\t\t"+ str(x[2]) +"\t\t\t\t"+ str(x[3])+"\t\t\t"+ str(x[4])+ "\t\t\t"+ str(x[5])
 def ImprimeParejas(parejas):
-    print "N° \t\tCodificacion \t\tEntero   \t\tF(X)\t\t\tPenalizacion\t\tProbabilidad Invertida\t\t\tPareja"
+    print "N° \t\tCodificacion \t\tEntero   \t\tF(X)\t\t\tPenalizacion\t\tProbabilidad Invertida"
     for x in parejas:
-        print ""+str(x[0]) +"\t\t"+ str(x[1]) +"\t\t\t"+ str(x[2]) +"\t\t\t\t"+ str(x[3])+"\t\t\t\t"+ str(x[4])+ "\t\t\t\t"+ str(x[5])+ "\t\t\t\t\t\t"+ str(x[6])
+        print ""+str(x[0]) +"\t\t"+ str(x[1]) +"\t\t\t"+ str(x[2]) +"\t\t\t\t"+ str(x[3])+"\t\t\t\t"+ str(x[4])+ "\t\t\t\t"+ str(x[5])
 def ImprimePenalizacion(cromos):
     print "N° \t\tCodificacion \t\tEntero   \t\tF(X)\t\t\tPenalizacion"
     for x in cromos:
@@ -41,8 +47,8 @@ def ImprimePenalizacion(cromos):
 def Calculo_fx(resultado):
     r=resultado.items()
     r.sort()
-    print "Calculo de f(x):"
-    print "N° \t\tCodificacion \t\tEntero   \t\tF(X)"
+    #print "Calculo de f(x):"
+    #print "N° \t\tCodificacion \t\tEntero   \t\tF(X)"
     ind=[]
     count=1
     for x in r:
@@ -56,7 +62,7 @@ def Calculo_fx(resultado):
         indi.append(concat)
         indi.append(entero)
         indi.append(fx)
-        print str(x[0])+"\t\t"+concat+"\t\t\t\t"+str(entero)+"\t\t\t\t"+str(fx)
+        #print str(x[0])+"\t\t"+concat+"\t\t\t\t"+str(entero)+"\t\t\t\t"+str(fx)
         ind.append(indi)
     return ind
 
@@ -66,13 +72,16 @@ def Penalizar(cromo,variables):
     max=variables[4]
     for i in cromo:
         x=i[2]
-        if x>=int(min) and x <=int(max):
+        if int(x)>=int(min) and int(x) <=int(max):
             i.append(i[3])
         else:
+            #print "Entro a penalizar"
             if variables[5]==1:
-                i.append(i[3]+100)
+                i.append(i[3]+1000000)
+                #print "penalizo a un maximo"
             else:
-                i.append(i[3]-100)
+                #print "penalizo a un minimo"
+                i.append(i[3]-10000000)
         cromos.append(i)
     return cromo
 def ImprimeGeneracion(generacion):
@@ -84,7 +93,7 @@ def ImprimeGeneracion(generacion):
 def SumatoriaFX(lista):
     suma=0
     for x in lista:
-        suma=suma+int(x[4])
+        suma=suma+abs(int(x[4]))
     return suma
 def Probabilidad(sum,individuos):
     for x in individuos:
@@ -107,15 +116,22 @@ def Ruleta(lista):
 
 def SeleccionParejas(opciones,variables):
     count =0
+    tabla_hijos=[]
     while count!=(int(variables[1])):
         n=random.randrange(0,100)
         for x in opciones:
-            if n <= int(x[5]):
-                opciones[count].append(x[1])
+            if int(x[5]) <= n:
+                tabla_hijos.append(x[1])
                 count=count+1
                 break
             else:
-
                 pass
-    return opciones
+    return opciones,tabla_hijos
 
+def GenerarLlaves(nueva_generacion):
+    diccionario={}
+    count = 1
+    for x in nueva_generacion:
+        diccionario[str(count)]=x
+        count=count+1
+    return  diccionario

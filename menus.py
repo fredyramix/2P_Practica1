@@ -19,11 +19,14 @@ def menu():
     print "[3].-F(x)=(1000/abs(50-x))+x"
     print "[4].-F(x)=x^2"
     print "[5].-F(x)=x^2"
-    x=input(":")
+    x=input("Ingresa una opcion: ")
+
+
+
     if funciones.has_key(str(x)):
         if str(x)=='1':
             variables=[]
-            variables.append("x^2")
+            variables.append("1")
             variables.append(raw_input("Ingrese el numero de cromosomas: "))
             variables.append(raw_input("Ingrese el numero de generaciones: "))
             print "Ingrese Rango X: 0<=X<=200"
